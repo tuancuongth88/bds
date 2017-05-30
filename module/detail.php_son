@@ -1,0 +1,884 @@
+<script>
+$(document).ready(function(){
+  $('.bxslider').bxSlider({
+	  auto: true,pagerCustom: '#bx-pager'
+	});
+});
+</script>
+<style>
+.bx-wrapper{
+	margin-bottom:5px!important;
+}
+ul.bxslider li {
+    text-align: center;
+}
+
+ul.bxslider li img {
+    display: inline;
+    height: 100%;
+}
+</style>
+<?php if($row_sanpham['cate']==0){ // tin bds?>
+	<?php
+	$idtinh=$row_sanpham['idcity'];
+	$idquan=$row_sanpham['idquan'];
+	$idphuong=$row_sanpham['idphuong'];
+	$idstreet=$row_sanpham['idstreet'];
+	$idnhucau=get_field('tbl_rv_category','id',$row_sanpham['parent'],'parent');
+	$idloai=$row_sanpham['parent'];
+	?>
+    <h2 class="t_ndct">
+    
+        <?=$row_sanpham['name']?>
+        <div class="addthis_sharing_toolbox"></div>
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52493e8d684da4cc"></script>
+    </h2><!-- End .t_ndct -->
+    
+    <span class="date_ndct"><? if($row_sanpham['sonha']!="")  echo $row_sanpham['sonha'].", "?><? if($row_sanpham['idstreet']!="")  echo  get_field('tbl_street','id',$row_sanpham['idstreet'],'name').", ";?> <? if($row_sanpham['idphuong']!="")  echo get_field('tbl_phuongxa','id',$row_sanpham['idphuong'],'name').", ";?><? if($row_sanpham['idquan']!="")  echo get_field('tbl_quanhuyen','id',$row_sanpham['idquan'],'name').", ";?> <?=get_field('tbl_quanhuyen_category','id',$row_sanpham['idcity'],'name');?>  </span>
+    
+    <div class="f_prod_D clearfix">
+        
+        <div class="f1_pD">
+            <div class="sliderhs">
+				<ul class="bxslider"> 
+					<?php
+						$img_array=array();
+						$img_larg_array=array();
+						$kk=0;
+						for($i=0;$i<6;$i++){
+							$ii=$i;
+							if($i==0) $i="";
+							if($row_sanpham['image'.$i]!="")
+							{
+								$hinh_crop=$linkrootbds."imagecache/image.php/".$row_sanpham['image'.$i]."?width=94&amp;height=74&amp;cropratio=1:1&amp;image=".$linkrootbds.$row_sanpham['image'.$i];
+								$hinh_larg_crop=$linkrootbds."imagecache/image.php/".$row_sanpham['image'.$i]."?width=430&amp;height=450&amp;cropratio=3:2&amp;image=".$linkrootbds.$row_sanpham['image'.$i];
+								$img_array[$ii]=$hinh_crop;
+								$img_larg_array[$ii]=$hinh_larg_crop;
+								$kk++;
+								
+								?>
+								
+								
+									<li>
+										<img class="rsTmb" src="<?php echo $img_larg_array[$ii];?>" alt=""/>
+									</li> 
+								<?php  
+							}
+						}
+					for($i=$kk;$i<6;$i++){
+					?>
+						<li>
+							<img class="rsTmb" src="imgs/noimage.png" alt=""/>
+						</li>
+					<?php }?>
+				   </ul>      
+					<div id="bx-pager">
+						<?php
+							$img_array=array();
+							$img_larg_array=array();
+							$kk=0;
+							for($i=0;$i<6;$i++){
+								$ii=$i;
+								if($i==0) $i="";
+								if($row_sanpham['image'.$i]!="")
+								{
+									$hinh_crop=$linkrootbds."imagecache/image.php/".$row_sanpham['image'.$i]."?width=94&amp;height=74&amp;cropratio=1:1&amp;image=".$linkrootbds.$row_sanpham['image'.$i];
+									$hinh_larg_crop=$linkrootbds."imagecache/image.php/".$row_sanpham['image'.$i]."?width=430&amp;height=450&amp;cropratio=3:2&amp;image=".$linkrootbds.$row_sanpham['image'.$i];
+									$img_array[$ii]=$hinh_crop;
+									$img_larg_array[$ii]=$hinh_larg_crop;
+									$kk++;
+									
+									?>
+									
+											<a data-slide-index="<?php echo $i;?>" href=""><img class="rsTmb" src="<?php echo $img_array[$ii];?>" alt=""/></a>
+									<?php  
+								}
+							}
+						for($i=$kk;$i<6;$i++){
+						?>								
+								<a data-slide-index="<?php echo $i;?>" href=""><img class="rsTmb" src="imgs/noimage.png" alt=""/></a>
+							
+						<?php }?>
+					  
+					</div>
+				</div>
+            <div class="clear"></div>             
+            <div style="padding:5px;">
+            	Xem ảnh lớn: &nbsp;
+            	<script type="text/javascript" src="<?=$linkrootbds?>lib/thickbox/thickbox.js"></script>
+                <style type="text/css" media="all">@import "<?=$linkrootbds?>lib/thickbox/thickbox.css";</style>
+            	<?
+                for($i=0;$i<6;$i++){
+						$ii=$i;
+						if($i==0) $i="";
+						if($row_sanpham['image'.$i]!="")
+						{
+				?>
+            	<a href="<?=$linkrootbds?><?=$row_sanpham['image'.$i]?>" class="thickbox" rel="gallery-plants" > Ảnh <?=$i+1?> </a> &nbsp;  
+                <? }}?>
+            </div>
+            
+        </div><!-- End .f1_pD -->
+        
+        <div class="f2_pD">
+           
+            <div class="prive_pD">
+            	 <?php if($row_sanpham['price']!=""){?>
+                Giá
+                <span><?=$row_sanpham['price']?> <?php echo value_unit($row_sanpham['donvi']);?>/<?php echo dientich($row_sanpham['dientich']);?> </span>
+                 <?php }else {?>
+                  <span> Liên hệ</span>
+                 <?php }?>
+            </div><!-- End .prive_pD -->
+           
+            <div class="info_pD">
+                <ul>
+                    <li class="clearfix">
+                        <span class="i1_pd">
+                            Mã tin:
+                        </span>
+                        <span class="i2_pd">
+                           <?=$row_sanpham['id']?>
+                        </span>
+                    </li>
+                    <?php if($row_sanpham['dtkhuonvien']!=""){?>
+                    <li class="clearfix">
+                        <span class="i1_pd">
+                            Tổng diện tích đất:
+                        </span>
+                        <span class="i2_pd">
+                            <?=$row_sanpham['dtkhuonvien']?>
+                        </span>
+                    </li>
+                    <?php }?>
+                    <?php if($row_sanpham['tongdtsudung']!=""){?>
+                    <li class="clearfix">
+                        <span class="i1_pd">
+                            Diện tích sử dụng:
+                        </span>
+                        <span class="i2_pd">
+                            <?=str_replace("m2", "", $row_sanpham['tongdtsudung'])?> m2
+                        </span>
+                    </li>
+                    <?php }?>
+                    <li class="clearfix">
+                        <span class="i1_pd">
+                            Vị trí:
+                        </span>
+                        <span class="i2_pd">
+                           <?=get_field('tbl_quanhuyen_category','id',$row_sanpham['idcity'],'name');?> 
+                        </span>
+                    </li>
+                    <li class="clearfix">
+                        <span class="i1_pd">
+                            Ngày cập nhật:
+                        </span>
+                        <span class="i2_pd">
+                            <?=$row_sanpham['date_added']?> 
+                        </span>
+                    </li>
+                    <li class="clearfix">
+                        <span class="i1_pd">
+                            Số người xem:
+                        </span>
+                        <span class="i2_pd">
+                            <?=$row_sanpham['view']?>
+                        </span>
+                    </li>
+                    <li class="clearfix">
+                        <span class="i1_pd">
+                            Loại địa ốc:
+                        </span>
+                        <span class="i2_pd">
+                            <?=get_field('tbl_rv_category','id',$row_sanpham['parent'],'name');?>
+                        </span>
+                    </li>
+                    <li class="clearfix">
+                        <span class="i1_pd">
+                            Tình trạng pháp lý:
+                        </span>
+                        <span class="i2_pd">
+                            <?=phaply($row_sanpham['tinhtrangphaply'])?>  
+                        </span>
+                    </li>
+                    <li class="clearfix">
+                        <span class="i1_pd">
+                            Hướng:
+                        </span>
+                        <span class="i2_pd">
+                            <?=huong($row_sanpham['huong'])?>  
+                        </span>
+                    </li>
+                     <?php if($row_sanpham['solau']>0){?>
+                    <li class="clearfix">
+                        <span class="i1_pd">
+                            Số lầu:
+                        </span>
+                        <span class="i2_pd">
+                            <?=$row_sanpham['solau']?> 
+                        </span>
+                    </li>
+                    <?php }?>
+                    <?php if($row_sanpham['sophong']>0){?>
+                    <li class="clearfix">
+                        <span class="i1_pd">
+                            Số phòng:
+                        </span>
+                        <span class="i2_pd">
+                            <?=$row_sanpham['sophong']?>  
+                        </span>
+                    </li>
+                    <?php }?>
+                    <?php if($row_sanpham['namxaydung']!=""){?>
+                    <li class="clearfix">
+                        <span class="i1_pd">
+                            Năm xây dựng:
+                        </span>
+                        <span class="i2_pd">
+                             <?=$row_sanpham['namxaydung']?> 
+                        </span>
+                    </li>
+                    <?php }?>
+                    <li class="clearfix">
+                        <span class="i1_pd">
+                            Rao Bán/Thuê:
+                        </span>
+                        <span class="i2_pd">
+                            <?=hinhthuc($row_sanpham['raoban_thue'])?>  
+                        </span>
+                    </li>
+                </ul>
+            </div><!-- End .info_pD -->
+            
+        </div><!-- End .f2_pD -->
+        
+    </div><!-- End .f_prod_D -->
+       
+       <div class="nlh">
+    <span class="t_nlh">Thông tin liên hệ</span><!-- End .t_nlh -->
+        <ul>
+            <li class="clearfix">
+                <span>Tên người bán: <?=$row_sanpham['khachhang']?></span>
+               
+            </li>
+            <li class="clearfix">
+                <span>Điện thoại: <?=$row_sanpham['dienthoai']?></span>
+                
+            </li>
+            <li class="clearfix">
+                <span>Email: <a href="mailto:<?=$row_sanpham['email']?>"><?=$row_sanpham['email']?></a></span>
+               
+            </li>
+            <li class="clearfix">
+                <span>Địa chỉ: <?=$row_sanpham['diachi']?></span>              
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+    
+    <div class="block_pD">
+        <h4 class="t_prod">
+            <span>
+                Thông tin chi tiết
+            </span>
+        </h4><!-- End .t_prod -->
+        <div class="m_pD">
+        
+            <div class="f_detail clearfix">
+
+                 <?=$row_sanpham['detail']?>
+                
+            </div><!-- End .f_detail -->
+        
+        </div><!-- End .m_pD -->
+    </div><!-- End .block_pD -->
+    <div class="block_pD">
+        <h4 class="t_prod">
+            <span>
+                Đặc điểm khác
+            </span>
+        </h4><!-- End .t_prod -->
+        <div class="m_pD">
+        
+            <table class="tab_ddk">
+                <tbody>
+                    <tr>
+                        <td>+ Tiện để ở  <?php  if(valueinstr($row_sanpham['dacdiemkhac'],1)!=''){?> <img src="imgs/layout/check_ddk.jpg" alt=""/> <?php }?> </td>
+                        <td>+ Gần trường <?php  if(valueinstr($row_sanpham['dacdiemkhac'],2)!=''){?> <img src="imgs/layout/check_ddk.jpg" alt=""/> <?php }?></td>
+                        <td>+ Khu nội bộ <?php  if(valueinstr($row_sanpham['dacdiemkhac'],3)!=''){?> <img src="imgs/layout/check_ddk.jpg" alt=""/> <?php }?></td>
+                        <td>+ Truyền hình cáp </td>
+                    </tr>
+                    <tr>
+                        <td>+ Tiện làm văn phòng <?php  if(valueinstr($row_sanpham['dacdiemkhac'],4)!=''){?> <img src="imgs/layout/check_ddk.jpg" alt=""/> <?php }?></td>
+                        <td>+ Gần bệnh viện <?php  if(valueinstr($row_sanpham['dacdiemkhac'],5)!=''){?> <img src="imgs/layout/check_ddk.jpg" alt=""/> <?php }?></td>
+                        <td>+ Có bảo vệ <?php  if(valueinstr($row_sanpham['dacdiemkhac'],6)!=''){?> <img src="imgs/layout/check_ddk.jpg" alt=""/> <?php }?></td>
+                        <td>+ Điện thoại</td>
+                    </tr>
+                    <tr>
+                        <td>+ Tiện cho sản xuất <?php  if(valueinstr($row_sanpham['dacdiemkhac'],7)!=''){?> <img src="imgs/layout/check_ddk.jpg" alt=""/> <?php }?></td>
+                        <td>+ Gần chợ - siêu thị <?php  if(valueinstr($row_sanpham['dacdiemkhac'],8)!=''){?> <img src="imgs/layout/check_ddk.jpg" alt=""/> <?php }?></td>
+                        <td>+ Chỗ đậu xe hơi <?php  if(valueinstr($row_sanpham['dacdiemkhac'],9)!=''){?> <img src="imgs/layout/check_ddk.jpg" alt=""/> <?php }?></td>
+                        <td>+ Đồng hồ nước <?php  if(valueinstr($row_sanpham['dacdiemkhac'],10)!=''){?> <img src="imgs/layout/check_ddk.jpg" alt=""/> <?php }?></td>
+                    </tr>
+                    <tr>
+                        <td>+ Tiện kinh doanh <?php  if(valueinstr($row_sanpham['dacdiemkhac'],11)!=''){?> <img src="imgs/layout/check_ddk.jpg" alt=""/> <?php }?></td>
+                        <td>+ Gần công viên <?php  if(valueinstr($row_sanpham['dacdiemkhac'],12)!=''){?> <img src="imgs/layout/check_ddk.jpg" alt=""/> <?php }?></td>
+                        <td>+ Internet <?php  if(valueinstr($row_sanpham['dacdiemkhac'],13)!=''){?> <img src="imgs/layout/check_ddk.jpg" alt=""/> <?php }?></td>
+                        <td>+ Đồng hồ điện <?php  if(valueinstr($row_sanpham['dacdiemkhac'],14)!=''){?> <img src="imgs/layout/check_ddk.jpg" alt=""/> <?php }?></td>
+                    </tr>
+                    <tr>
+                        <td>+ Máy nước nóng <?php  if(valueinstr($row_sanpham['dacdiemkhac'],15)!=''){?> <img src="imgs/layout/check_ddk.jpg" alt=""/> <?php }?></td>
+                        <td>+ Máy lạnh <?php  if(valueinstr($row_sanpham['dacdiemkhac'],16)!=''){?> <img src="imgs/layout/check_ddk.jpg" alt=""/> <?php }?></td>
+                        <td>+ Hồ bơi <?php  if(valueinstr($row_sanpham['dacdiemkhac'],17)!=''){?> <img src="imgs/layout/check_ddk.jpg" alt=""/> <?php }?></td>
+                        <td>+ Sân vườn <?php  if(valueinstr($row_sanpham['dacdiemkhac'],18)!=''){?> <img src="imgs/layout/check_ddk.jpg" alt=""/> <?php }?></td>
+                    </tr>
+                </tbody>
+            </table><!-- End .tab_ddk -->
+        
+        </div><!-- End .m_pD -->
+    </div><!-- End .block_pD --> 
+       
+    <?php //include("module/box_comment.php"); ?>
+    
+    <div class="tag">
+        <span>Tags</span>
+        
+        <?php
+		if($row_sanpham['catebds']=='1')  {$ghinho=1; $catebds="can-ban";}
+		elseif($row_sanpham['catebds']=='2')  {$ghinho=1; $catebds="can-mua";}
+		elseif($row_sanpham['catebds']=='3'  )  {$ghinho=1; $catebds="cho-thue";}
+		elseif($row_sanpham['catebds']=='4'  )  {$ghinho=1; $catebds="can-thue";}
+		elseif($row_sanpham['catebds']=='5'  )  {$ghinho=1; $catebds="sang-nhuong";}
+		elseif($row_sanpham['catebds']=='tin-tuc') $ghinho=2;
+		elseif($row_sanpham['catebds']=='du-an') $ghinho=3;
+		elseif($row_sanpham['catebds']=='doanh-nghiep') $ghinho=4;
+		elseif($row_sanpham['catebds']=='tat-ca') $ghinho=0;
+ 		
+		$aa=0;
+		$catebds2=get_field('tbl_rv_category','id',$row_sanpham['parent'],'subject');
+		if($row_sanpham['keyword']!="")  {
+			$tag=$row_sanpham['keyword'];
+			$check=1;
+			
+			if(strpos($tag,",")!==false){
+				$aa=1;
+			}
+			
+		}
+		else {$tag=$row_sanpham['name'];$check=0;$aa=1;} 
+		if($aa==1)echo cat_chuoi_lam_tags($tag,$check,3,'nhu-cau/'.$catebds2.'/',2);
+		else echo '<a href="http://www.giathinhcantho.com/nhu-cau/'.$catebds2.'/'.$tag.'.html" title="'.$tag.'" target="_blank"> '.$tag.'</a>';
+		?>
+    </div><!-- End .tag --> 
+        <div class="n2h">
+    <span class="t_nlh">Lưu ý</span><!-- End .t_nlh -->
+    <div>
+Quý khách đang xem nội dung tin rao "<strong><?=$row_sanpham['name']?></strong>". Mọi thông tin liên quan tới tin rao này là do người đăng tin đăng tải và chịu trách nhiệm. Chúng tôi luôn cố gắng để có chất lượng thông tin tốt nhất. Chúng tôi khhông chịu trách nhiệm nào về bất kỳ tổn thất, hay tranh chấp liên quan đến việc quý khách tham khảo thông tin trên website. Nếu quý khách phát hiện có sai sót hay vấn đề gì<a href="http://www.kenhcantho.com/lien-he.html" title=" Thông báo tin lỗi, nội dung xấu" target="_blank"> xin hãy thông báo cho chúng tôi</a>.
+    </div>
+      </div>
+ 
+    <div class="news_other">
+    
+        <div class="block_prod">
+            <h4 class="t_prod">
+                <span>
+                    Bất động sản khác
+                </span>
+            </h4><!-- End .t_prod -->
+            <div class="m_prod">
+                <ul>
+					<?php
+                    $bds=get_records("tbl_rv_item","status=1 and cate=0 and parent='".$row_sanpham['parent']."'","id DESC","0,8"," ");
+                    $cate=$row_sanpham['cate'];
+                    while($row_bds=mysql_fetch_assoc($bds)){
+                    ?>
+                    <li>
+                        <div class="li_prod clearfix">
+                            <span class="lp_1">
+                                <a href="<?php echo $linkrootbds?><?php echo $row_bds['subject'];?>.html" title="<?php echo $row_bds['name'];?>">
+                                  <?php 
+									if($row_bds['image']!="") $hinh=$row_bds['image'];else $hinh="imgs/noimage.png";
+									$hinh=$linkrootbds."imagecache/image.php/".$hinh."?width=100&amp;height=100&amp;cropratio=1:1&amp;image=".$linkrootbds.$hinh;
+								?>
+									<img src="<?php echo $hinh;?>" alt="<?php echo $row_bds['name'];?>">
+								</a> 
+                            </span><!-- End .lp_1 -->
+                            <span class="lp_2">
+                                <h4>
+                                    <a href="<?php echo $linkrootbds?><?php echo $row_bds['subject'];?>.html" title="<?php echo $row_bds['name'];?>">
+                                        <?php echo $row_bds['name'];?>
+                                    </a>
+                                </h4>
+                                <span class="vt_lp">Vị trí:  <?=get_field('tbl_quanhuyen_category','id',$row_bds['idcity'],'name');?></span>
+                                <span class="price_lp">Giá: <?php echo  $row_bds['price'];?> <?php echo value_unit($row_bds['donvi']);?>/<?php echo dientich($row_bds['dientich']);?></span>
+                            </span><!-- End .lp_2 -->
+                        </div><!-- End .li_prod -->
+                    </li>
+                    <?php }?> 
+                </ul>
+                <div class="clear"></div>
+            </div><!-- End .m_prod -->
+        </div><!-- End .block_prod -->
+        
+    </div><!-- End .news_other -->
+                  	
+ <?php }elseif($row_sanpham['cate']==1){ // tin tuc?>
+ 	
+    <h2 class="t_ndct">
+        <?=$row_sanpham['name']?>
+        <div class="addthis_sharing_toolbox"></div>
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52493e8d684da4cc"></script> 
+    </h2><!-- End .t_ndct -->
+    <span class="date_ndct">(<?php echo $row_sanpham['date_added'];?>)</span>
+    <h4 class="tt_ndct">
+        <?=$row_sanpham['detail_short']?>
+    </h4><!-- End .tt_ndct -->
+    
+    <div class="f_detail clearfix">
+
+         <?=$row_sanpham['detail']?>
+        
+    </div><!-- End .f_detail -->
+    
+       
+    
+    <div class="tag">
+        <span>Tags</span>
+        <?php
+		$catebds2=get_field('tbl_rv_category','id',$row_sanpham['parent'],'subject');
+		if($row_sanpham['keyword']!="")  {$tag=$row_sanpham['keyword'];$check=1;}
+		else {$tag=$row_sanpham['name'];$check=0;} 
+		echo cat_chuoi_lam_tags($tag,$check,3,'tags/'.$catebds2.'/',2);
+		?>
+    </div><!-- End .tag -->                      
+ 
+    
+    <div class="news_other">
+    
+        <div class="block_prod">
+            <h4 class="t_prod">
+                <span>
+                    Tin tức khác
+                </span>
+            </h4><!-- End .t_prod -->
+            <div class="f_news">
+                <ul>
+                	<?php
+                    $bds=get_records("tbl_rv_item","status=1 and parent='".$row_sanpham['parent']."'","rand()","0,6"," ");
+                    $cate=$row_sanpham['cate'];
+                    while($row_bds=mysql_fetch_assoc($bds)){
+                    ?>
+                    <li class="clearfix">
+                        <span class="fn_1">
+                            <a href="<?php echo $linkrootbds?><?php echo $row_bds['subject'];?>.html" title="<?php echo $row_bds['name'];?>">
+								<?php 
+                                if($row_bds['image']!="") $hinh=$row_bds['image'];else $hinh="imgs/noimage.png";
+                                $hinh=$linkrootbds."imagecache/image.php/".$hinh."?width=100&amp;height=100&amp;cropratio=1:1&amp;image=".$linkrootbds.$hinh;
+                                ?>
+                                <img src="<?php echo $hinh;?>" alt="<?php echo $row_bds['name'];?>">
+                            </a> 
+                        </span><!-- End .fn_1 -->
+                        <span class="fn_2">
+                            <h4>
+                                <a href="<?php echo $linkrootbds?><?php echo $row_bds['subject'];?>.html" title="<?php echo $row_bds['name'];?>">
+                                	<?=$row_bds['name']?>
+                                </a>
+                            </h4>
+                            <p>
+                                <?php echo catchuoi_tuybien(strip_tags($row_bds['detail_short']),35);?>
+                            </p>
+                        </span><!-- End .fn_2 -->
+                    </li>
+                    <?php }?>
+                </ul>
+            </div><!-- End .f_news -->
+        </div><!-- End .block_prod -->
+        
+    </div>
+    
+  <?php }elseif($row_sanpham['cate']==2){ // du an?>
+  <h2 class="t_ndct">
+        <?=$row_sanpham['name']?>
+        <div class="addthis_sharing_toolbox"></div>
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52493e8d684da4cc"></script>
+    </h2><!-- End .t_ndct -->
+    <span class="date_ndct">(<?php echo $row_sanpham['date_added'];?>)</span>
+    
+    
+    <div class="f_da">
+		<div class="sliderhs">
+           <ul class="bxslider">            
+			<?php
+				$img_array=array();
+				$img_larg_array=array();
+				$kk=0;
+				for($i=0;$i<6;$i++){
+					$ii=$i;
+					if($i==0) $i="";
+					if($row_sanpham['image'.$i]!="")
+					{
+						$hinh_crop=$linkrootbds."imagecache/image.php/".$row_sanpham['image'.$i]."?width=94&amp;height=74&amp;cropratio=1:1&amp;image=".$linkrootbds.$row_sanpham['image'.$i];
+						$hinh_larg_crop=$linkrootbds."imagecache/image.php/".$row_sanpham['image'.$i]."?width=460&amp;height=450&amp;cropratio=3:2&amp;image=".$linkrootbds.$row_sanpham['image'.$i];
+						$img_array[$ii]=$hinh_crop;
+						$img_larg_array[$ii]=$hinh_larg_crop;
+						$kk++;
+						
+			?>
+			
+			
+				<li>
+					<img class="rsTmb" src="<?php echo $img_larg_array[$ii];?>" alt="<?=$row_sanpham['name']?>"/>
+				</li> 
+			<?php  
+					}
+				}
+			for($i=$kk;$i<6;$i++){
+			?>
+				<li>
+					<img class="rsTmb" src="<?php echo $linkrootbds?>imgs/noimage.png" alt="<?=$row_sanpham['name']?>"/>
+				</li>
+			<?php }?>
+			</ul>	
+			<div id="bx-pager">
+				<?php
+				$img_array=array();
+				$img_larg_array=array();
+				$kk=0;
+				for($i=0;$i<6;$i++){
+					$ii=$i;
+					if($i==0) $i="";
+					if($row_sanpham['image'.$i]!="")
+					{
+						$hinh_crop=$linkrootbds."imagecache/image.php/".$row_sanpham['image'.$i]."?width=94&amp;height=74&amp;cropratio=1:1&amp;image=".$linkrootbds.$row_sanpham['image'.$i];
+						$hinh_larg_crop=$linkrootbds."imagecache/image.php/".$row_sanpham['image'.$i]."?width=460&amp;height=450&amp;cropratio=3:2&amp;image=".$linkrootbds.$row_sanpham['image'.$i];
+						$img_array[$ii]=$hinh_crop;
+						$img_larg_array[$ii]=$hinh_larg_crop;
+						$kk++;
+						
+			?>
+			
+				<a data-slide-index="<?php echo $i;?>" href=""><img class="rsTmb" src="<?php echo $img_array[$ii];?>" alt="<?=$row_sanpham['name']?>"/></a>
+			<?php  
+					}
+				}
+			for($i=$kk;$i<6;$i++){
+			?>
+				<a data-slide-index="<?php echo $i;?>" href=""><img class="rsTmb" src="<?php echo $linkrootbds?>imgs/noimage.png" alt="<?=$row_sanpham['name']?>"/></a>
+					
+			<?php }?>
+			  
+			</div>
+		</div>
+        <div class="clear"></div> 
+    </div><!-- End .f_da -->
+ 
+    <div class="block_pD">
+        <h4 class="t_prod">
+            <span>
+                Thông tin chi tiết
+            </span>
+        </h4><!-- End .t_prod -->
+        <div class="m_pD">
+            <div class="f_detail clearfix">
+        
+                 <?=$row_sanpham['detail']?>
+                
+            </div><!-- End .f_detail -->    
+        </div><!-- End .m_pD -->
+    </div><!-- End .block_pD -->  
+    
+    <div class="nlh">
+    <span class="t_nlh">Thông tin liên hệ</span><!-- End .t_nlh -->
+        <ul>
+            <li class="clearfix">
+                <span>Thông tin liên hệ</span>
+                <span>: <?=$row_sanpham['khachhang']?></span>
+            </li>
+            <li class="clearfix">
+                <span>Điện thoại</span>
+                <span>: <?=$row_sanpham['dienthoai']?></span>
+            </li>
+            <li class="clearfix">
+                <span>Email</span>
+                <span>: <a href="mailto:<?=$row_sanpham['email']?>"><?=$row_sanpham['email']?></a></span>
+            </li>
+            <li class="clearfix">
+                <span>Địa chỉ</span>
+                <span>: <?=$row_sanpham['diachi']?></span>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+    
+    <div class="tag">
+        <span>Tags</span>
+         <?php
+		$catebds2=get_field('tbl_rv_category','id',$row_sanpham['parent'],'subject');
+		if($row_sanpham['keyword']!="")  {$tag=$row_sanpham['keyword'];$check=1;}
+		else {$tag=$row_sanpham['name'];$check=0;} 
+		echo cat_chuoi_lam_tags($tag,$check,3,'tags/'.$catebds2.'/',2);
+		?>
+    </div><!-- End .tag -->                 
+    
+    <div class="news_other">
+    
+        <div class="block_prod">
+            <h4 class="t_prod">
+                <span>
+                    Dự án khác
+                </span>
+            </h4><!-- End .t_prod -->
+            <div class="f_news">
+                <ul>
+                	<?php
+                    $bds=get_records("tbl_rv_item","status=1 and parent='".$row_sanpham['parent']."'","rand()","0,6"," ");
+                    $cate=$row_sanpham['cate'];
+                    while($row_bds=mysql_fetch_assoc($bds)){
+                    ?>
+                    <li class="clearfix">
+                        <span class="fn_1">
+                            <a href="<?php echo $linkrootbds?><?php echo $row_bds['subject'];?>.html" title="<?php echo $row_bds['name'];?>">
+								<?php 
+                                if($row_bds['image']!="") $hinh=$row_bds['image'];else $hinh="imgs/noimage.png";
+                                $hinh=$linkrootbds."imagecache/image.php/".$hinh."?width=100&amp;height=100&amp;cropratio=1:1&amp;image=".$linkrootbds.$hinh;
+                                ?>
+                                <img src="<?php echo $hinh;?>" alt="<?php echo $row_bds['name'];?>">
+                            </a> 
+                        </span><!-- End .fn_1 -->
+                        <span class="fn_2">
+                            <h4>
+                                <a href="<?php echo $linkrootbds?><?php echo $row_bds['subject'];?>.html" title="<?php echo $row_bds['name'];?>">
+                                	<?=$row_bds['name']?>
+                                </a>
+                            </h4>
+                            <p>
+                                <?php echo catchuoi_tuybien(strip_tags($row_bds['detail_short']),35);?>
+                            </p>
+                        </span><!-- End .fn_2 -->
+                    </li>
+                    <?php }?>
+                </ul>
+            </div><!-- End .f_news -->
+        </div><!-- End .block_prod -->
+        
+    </div><!-- End .news_other -->
+    
+<?php }elseif($row_sanpham['cate']==3){ // tin tuc?>
+  <h2 class="t_ndct">
+        <?=$row_sanpham['name']?>
+        <div class="addthis_sharing_toolbox"></div>
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52493e8d684da4cc"></script>
+    </h2><!-- End .t_ndct -->
+    <span class="date_ndct">(<?php echo $row_sanpham['date_added'];?>)</span>
+ 
+    
+    <div class="f_detail clearfix">
+
+         <?=$row_sanpham['detail']?>
+        
+    </div><!-- End .f_detail -->      
+    
+    <div class="tag">
+        <span>Tags</span>
+        <?php
+		$catebds2=get_field('tbl_rv_category','id',$row_sanpham['parent'],'subject');
+		if($row_sanpham['keyword']!="")  {$tag=$row_sanpham['keyword'];$check=1;}
+		else {$tag=$row_sanpham['name'];$check=0;} 
+		echo cat_chuoi_lam_tags($tag,$check,3,'tags/'.$catebds2.'/',2);
+		?>
+    </div><!-- End .tag -->                 
+    
+    <div class="news_other">
+    
+        <div class="block_prod">
+            <h4 class="t_prod">
+                <span>
+                    Doanh nghiệp khác
+                </span>
+            </h4><!-- End .t_prod -->
+            <div class="f_news">
+                <ul>
+                	<?php
+                    $bds=get_records("tbl_rv_item","status=1 and parent='".$row_sanpham['parent']."'","rand()","0,6"," ");
+                    $cate=$row_sanpham['cate'];
+                    while($row_bds=mysql_fetch_assoc($bds)){
+                    ?>
+                    <li class="clearfix">
+                        <span class="fn_1">
+                            <a href="<?php echo $linkrootbds?><?php echo $row_bds['subject'];?>.html" title="<?php echo $row_bds['name'];?>">
+								<?php 
+                                if($row_bds['image']!="") $hinh=$row_bds['image'];else $hinh="imgs/noimage.png";
+                                $hinh=$linkrootbds."imagecache/image.php/".$hinh."?width=100&amp;height=100&amp;cropratio=1:1&amp;image=".$linkrootbds.$hinh;
+                                ?>
+                                <img src="<?php echo $hinh;?>" alt="<?php echo $row_bds['name'];?>">
+                            </a> 
+                        </span><!-- End .fn_1 -->
+                        <span class="fn_2">
+                            <h4>
+                                <a href="<?php echo $linkrootbds?><?php echo $row_bds['subject'];?>.html" title="<?php echo $row_bds['name'];?>">
+                                	<?=$row_bds['name']?>
+                                </a>
+                            </h4>
+                            <p>
+                                <?php echo catchuoi_tuybien(strip_tags($row_bds['detail_short']),35);?>
+                            </p>
+                        </span><!-- End .fn_2 -->
+                    </li>
+                    <?php }?>
+                </ul>
+            </div><!-- End .f_news -->
+        </div><!-- End .block_prod -->
+        
+    </div><!-- End .news_other -->
+<?php }elseif($row_sanpham['cate']==4){ ?> 
+
+
+<div class="f_detail clearfix">
+
+ 	<?=$row_sanpham['detail']?>
+
+</div><!-- End .f_detail --> 
+<?php }elseif($row_sanpham['cate']==5){ // tin spam?> 
+<h2 class="t_ndct">
+        <?=$row_sanpham['name']?>
+        <div class="addthis_sharing_toolbox"></div>
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52493e8d684da4cc"></script>
+    </h2><!-- End .t_ndct -->
+    <span class="date_ndct">(<?php echo $row_sanpham['date_added'];?>)</span>
+ 
+    
+    <div class="f_da">     
+	<div class="sliderhs">
+            <ul class="bxslider"> 
+			<?php
+				$img_array=array();
+				$img_larg_array=array();
+				$kk=0;
+				for($i=0;$i<6;$i++){
+					$ii=$i;
+					if($i==0) $i="";
+					if($row_sanpham['image'.$i]!="")
+					{
+						$hinh_crop=$linkrootbds."imagecache/image.php/".$row_sanpham['image'.$i]."?width=94&amp;height=74&amp;cropratio=1:1&amp;image=".$linkrootbds.$row_sanpham['image'.$i];
+						$hinh_larg_crop=$linkrootbds."imagecache/image.php/".$row_sanpham['image'.$i]."?width=460&amp;height=450&amp;cropratio=3:2&amp;image=".$linkrootbds.$row_sanpham['image'.$i];
+						$img_array[$ii]=$hinh_crop;
+						$img_larg_array[$ii]=$hinh_larg_crop;
+						$kk++;
+						
+			?>
+			
+			
+				<li>
+					<img class="rsTmb" src="<?php echo $img_larg_array[$ii];?>" alt="<?=$row_sanpham['name']?>"/>
+				</li> 
+			<?php  
+					}
+				}
+			for($i=$kk;$i<6;$i++){
+			?>
+			<li>
+				<img class="rsTmb" src="<?php echo $linkrootbds?>imgs/noimage.png" alt="<?=$row_sanpham['name']?>"/>
+			</li>
+			<?php }?>
+			</ul>		
+			<div id="bx-pager">
+			  
+			  <?php
+				$img_array=array();
+				$img_larg_array=array();
+				$kk=0;
+				for($i=0;$i<6;$i++){
+					$ii=$i;
+					if($i==0) $i="";
+					if($row_sanpham['image'.$i]!="")
+					{
+						$hinh_crop=$linkrootbds."imagecache/image.php/".$row_sanpham['image'.$i]."?width=94&amp;height=74&amp;cropratio=1:1&amp;image=".$linkrootbds.$row_sanpham['image'.$i];
+						$hinh_larg_crop=$linkrootbds."imagecache/image.php/".$row_sanpham['image'.$i]."?width=460&amp;height=450&amp;cropratio=3:2&amp;image=".$linkrootbds.$row_sanpham['image'.$i];
+						$img_array[$ii]=$hinh_crop;
+						$img_larg_array[$ii]=$hinh_larg_crop;
+						$kk++;
+						
+			?>
+			<a data-slide-index="<?php echo $i;?>" href=""><img class="rsTmb" src="<?php echo $img_array[$ii];?>" alt="<?=$row_sanpham['name']?>"/></a>
+					
+			<?php  
+					}
+				}
+			for($i=$kk;$i<6;$i++){
+			?>
+				<a data-slide-index="<?php echo $i;?>" href=""><img class="rsTmb" src="<?php echo $linkrootbds?>imgs/noimage.png" alt="<?=$row_sanpham['name']?>"/></a>
+				
+			<?php }?>
+			</div>
+    </div>
+        <div class="clear"></div> 
+    </div><!-- End .f_da -->
+ 
+    <div class="block_pD">
+        <h4 class="t_prod">
+            <span>
+                Thông tin chi tiết
+            </span>
+        </h4><!-- End .t_prod -->
+        <div class="m_pD">
+            <div class="f_detail clearfix">
+        
+                 <?=$row_sanpham['detail']?>
+                
+            </div><!-- End .f_detail -->    
+        </div><!-- End .m_pD -->
+    </div><!-- End .block_pD -->      
+                
+    
+    <div class="news_other">
+    
+        <div class="block_prod">
+            <h4 class="t_prod">
+                <span>
+                    Tin khác
+                </span>
+            </h4><!-- End .t_prod -->
+            <div class="f_news">
+                <ul>
+                	<?php
+                    $bds=get_records("tbl_rv_item","status=1 and  cate=5 and parent='".$row_sanpham['parent']."'","rand()","0,6"," ");
+                    $cate=$row_sanpham['cate'];
+                    while($row_bds=mysql_fetch_assoc($bds)){
+                    ?>
+                    <li class="clearfix">
+                        <span class="fn_1">
+                            <a href="<?php echo $linkrootbds?><?php echo $row_bds['subject'];?>.html" title="<?php echo $row_bds['name'];?>">
+								<?php 
+                                if($row_bds['image']!="") $hinh=$row_bds['image'];else $hinh="imgs/noimage.png";
+                                $hinh=$linkrootbds."imagecache/image.php/".$hinh."?width=100&amp;height=100&amp;cropratio=1:1&amp;image=".$linkrootbds.$hinh;
+                                ?>
+                                <img src="<?php echo $hinh;?>" alt="<?php echo $row_bds['name'];?>">
+                            </a> 
+                        </span><!-- End .fn_1 -->
+                        <span class="fn_2">
+                            <h4>
+                                <a href="<?php echo $linkrootbds?><?php echo $row_bds['subject'];?>.html" title="<?php echo $row_bds['name'];?>">
+                                	<?=$row_bds['name']?>
+                                </a>
+                            </h4>
+                            <p>
+                            <?
+							$description_t = trim(str_replace("&nbsp;", "", $row_bds['detail']));
+							$description_t = trim(str_replace("  ", "", $description_t));   
+							$description_t = trim(str_replace("\r", "", $description_t));  
+							$description_t= strip_tags(catchuoi_tuybien(html_entity_decode($description_t, ENT_QUOTES, "UTF-8"),50))   ;
+							
+							$description_t= str_replace(PHP_EOL, ' ', $description_t);//htmlentities
+							$description_t= urldecode ($description_t);
+							?>
+                                <?php echo $description_t;?>
+                            </p>
+                        </span><!-- End .fn_2 -->
+                    </li>
+                    <?php }?>
+                </ul>
+            </div><!-- End .f_news -->
+        </div><!-- End .block_prod -->
+        
+    </div><!-- End .news_other -->
+<?php }?>

@@ -1,0 +1,75 @@
+RewriteEngine on
+
+
+RewriteCond %{REQUEST_URI} !\.[^./]+$
+RewriteCond %{REQUEST_URI} !(.*)/$
+RewriteRule ^(.*)$ http://kenhcantho.com/$1.html [R=301,L]
+
+RewriteRule ^(.*)/$ http://kenhcantho.com/$1.html [R=301,L]
+
+ 
+RewriteRule ^404-page-not-found.html$ index.php?act=page404 [L]
+ 
+RewriteRule ^gioi-thieu.html$ index.php?act=introduce [L]
+RewriteRule ^lien-he.html$ index.php?act=contact [L]
+RewriteRule ^thoat.html$ index.php?act=logout [L]
+RewriteRule ^dang-ky.html$ index.php?act=dangky [L]
+RewriteRule ^sua-thong-tin.html$ index.php?act=changeinfo [L]
+RewriteRule ^dang-nhap.html$ index.php?act=dangnhap [L]
+RewriteRule ^quan-ly-tin-dang.html$ index.php?act=manage [L]
+RewriteRule ^page-quan-ly-tin-dang/(.*)/(.*).html$ index.php?act=manage&tukhoa=$1&pageNum=$2 [L]
+RewriteRule ^dang-tin.html$ index.php?act=addbds [L]
+
+RewriteRule ^login.html$ index.php?act=login [L]
+
+RewriteRule ^xoa-tin/(.*).html$ index.php?act=xoa_raovat&tensanpham=$1 [L]
+RewriteRule ^google84cb0ce200dc705a.html$ google84cb0ce200dc705a.html [L]
+RewriteRule ^sua-tin/(.*).html$ index.php?act=edit_raovat&tensanpham=$1 [L]
+
+RewriteRule ^tags/(.*)/(.*).html$ index.php?act=tags&cate=$1&pageNum=$2 [L]
+
+RewriteRule ^page-tin-tuc-nha-dat/(.*)/(.*).html$ index.php?act=tinnhadat&tukhoa=$1&pageNum=$2 [L]
+RewriteRule ^tin-tuc-nha-dat.html$ index.php?act=tinnhadat [L]
+
+RewriteRule ^page-sieu-thi-dia-oc/(.*)/(.*).html$ index.php?act=sieuthidiaoc&tukhoa=$1&pageNum=$2 [L]
+RewriteRule ^sieu-thi-dia-oc.html$ index.php?act=sieuthidiaoc [L]
+
+RewriteRule ^page-du-an/(.*)/(.*).html$ index.php?act=duan&tukhoa=$1&pageNum=$2 [L]
+RewriteRule ^du-an.html$ index.php?act=duan [L]
+
+RewriteRule ^page-doanh-nghiep/(.*)/(.*).html$ index.php?act=doanhnghiep&tukhoa=$1&pageNum=$2 [L]
+RewriteRule ^doanh-nghiep.html$ index.php?act=doanhnghiep [L]
+
+RewriteRule ^page-video/(.*)/(.*).html$ index.php?act=video&tukhoa=$1&pageNum=$2 [L]
+RewriteRule ^video/(.*).html$ index.php?act=video_detail&name=$1 [L]
+RewriteRule ^video.html$ index.php?act=video [L]
+
+RewriteRule ^page-thanh-vien/(.*)/(.*)/(.*).html$ index.php?act=user&user=$1&tukhoa=$2&pageNum=$3 [L]
+RewriteRule ^thanh-vien/(.*).html$ index.php?act=user&user=$1 [L]
+
+RewriteRule ^lib/nicedit/nicUpload.php$ lib/nicedit/nicUpload.php [L]
+
+
+RewriteRule ^xu-ly/(.*).html$ module/xuly.php?k=$1 [L]
+
+RewriteRule ^tu-khoa-tim/(.*)/(.*).html$ index.php?act=search&keyword=$1&cate=$2 [L]
+
+RewriteRule ^page-tim-kiem/(.*)/(.*)/(.*).html$ index.php?act=search&keyword=$1&cate=$2&pageNum=$3 [L]
+
+
+RewriteRule ^page-danh-muc/(.*)/(.*)/(.*).html$ index.php?act=product_detail&bds=$1&tukhoa=$2&pageNum=$3 [L]
+RewriteRule ^(.*).html$ index.php?act=product_detail&bds=$1 [L]
+
+
+ 
+
+
+
+RewriteRule ^page-chuyen-muc/(.*)/p/(.*)/$ index.php?act=chuyenmuc&chuyenmuc=$1&pageNum=$2 [L]
+RewriteRule ^chuyen-muc/(.*).html$ index.php?act=chuyenmuc&chuyenmuc=$1 [L]
+RewriteRule ^thong-tin-chuyen-muc/(.*).html$ index.php?act=chuyenmuc_detail&tenchuyenmuc=$1 [L]
+
+
+
+
+

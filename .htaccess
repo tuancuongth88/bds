@@ -1,0 +1,130 @@
+RewriteEngine on
+ 
+
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+
+#RewriteRule (.*)www.kenhcantho.com$  $1 [R=301,L]
+
+RewriteRule ^robots.txt$ robots.txt [L]
+
+RewriteRule ^404-page-not-found.html$ index.php?act=page404 [L]
+ 
+ 
+RewriteRule ^lien-he.html$ index.php?act=contact [L]
+RewriteRule ^thoat.html$ index.php?act=logout [L]
+RewriteRule ^dang-ky.html$ index.php?act=dangky [L]
+RewriteRule ^sua-thong-tin.html$ index.php?act=changeinfo [L]
+RewriteRule ^doi-mat-khau.html$ index.php?act=changepass [L]
+RewriteRule ^dang-nhap.html$ index.php?act=dangnhap [L]
+RewriteRule ^quen-mat-khau.html$ index.php?act=forgetpass [L]
+RewriteRule ^quan-ly-tin-dang.html$ index.php?act=manage [L]
+RewriteRule ^quan-ly-tin-dang-du-an.html$ index.php?act=manageda [L]
+RewriteRule ^quan-ly-tin-dang-doanh-nghiep.html$ index.php?act=managedn [L]
+RewriteRule ^page-quan-ly-tin-dang/(.*)/(.*).html$ index.php?act=manage&tukhoa=$1&pageNum=$2 [L]
+RewriteRule ^page-quan-ly-tin-dang-du-an/(.*)/(.*).html$ index.php?act=manageda&tukhoa=$1&pageNum=$2 [L]
+RewriteRule ^page-quan-ly-tin-dang-doanh-nghiep/(.*)/(.*).html$ index.php?act=managedn&tukhoa=$1&pageNum=$2 [L]
+RewriteRule ^dang-tin.html$ index.php?act=addbds [L]
+
+
+RewriteRule ^dang-du-an.html$ index.php?act=addda [L]
+RewriteRule ^dang-doanh-nghiep.html$ index.php?act=adddn [L]
+
+RewriteRule ^login.html$ index.php?act=login [L]
+
+
+
+RewriteRule ^xoa-tin/(.*).html$ index.php?act=xoa_bds&tensanpham=$1 [L]
+RewriteRule ^google84cb0ce200dc705a.html$ google84cb0ce200dc705a.html [L]
+RewriteRule ^sua-tin/(.*).html$ index.php?act=edit_bds&tensanpham=$1 [L]
+RewriteRule ^sua-du-an/(.*).html$ index.php?act=edit_da&tensanpham=$1 [L]
+RewriteRule ^sua-doanh-nghiep/(.*).html$ index.php?act=edit_dn&tensanpham=$1 [L]
+
+RewriteRule ^page-nhu-cau/(.*)/(.*)/(.*)/(.*).html$ index.php?act=tags&cate=$1&tagcontent=$2&tukhoa=$3&pageNum=$4 [L]
+RewriteRule ^nhu-cau/(.*)/(.*).html$ index.php?act=tags&cate=$1&tagcontent=$2 [L]
+
+RewriteRule ^page-tags/(.*)/(.*)/(.*)/(.*).html$ index.php?act=tags&cate=$1&tagcontent=$2&tukhoa=$3&pageNum=$4 [L]
+RewriteRule ^tags/(.*)/(.*).html$ index.php?act=tags&cate=$1&tagcontent=$2 [L]
+
+RewriteRule ^page-tin-tuc-nha-dat/(.*)/(.*).html$ index.php?act=tinnhadat&tukhoa=$1&pageNum=$2 [L]
+RewriteRule ^tin-tuc-nha-dat.html$ index.php?act=tinnhadat [L]
+
+RewriteRule ^page-sieu-thi-dia-oc/(.*)/(.*).html$ index.php?act=sieuthidiaoc&tukhoa=$1&pageNum=$2 [L]
+RewriteRule ^sieu-thi-dia-oc.html$ index.php?act=sieuthidiaoc [L]
+
+RewriteRule ^page-du-an/(.*)/(.*).html$ index.php?act=duan&tukhoa=$1&pageNum=$2 [L]
+RewriteRule ^du-an.html$ index.php?act=duan [L]
+
+RewriteRule ^page-doanh-nghiep/(.*)/(.*).html$ index.php?act=doanhnghiep&tukhoa=$1&pageNum=$2 [L]
+RewriteRule ^doanh-nghiep.html$ index.php?act=doanhnghiep [L]
+
+RewriteRule ^page-nha-dat-chua-xac-thuc/(.*)/(.*).html$ index.php?act=nhadatchuaxacthuc&tukhoa=$1&pageNum=$2 [L]
+RewriteRule ^nha-dat-chua-xac-thuc.html$ index.php?act=nhadatchuaxacthuc [L]
+
+RewriteRule ^page-video/(.*)/(.*).html$ index.php?act=video&tukhoa=$1&pageNum=$2 [L]
+RewriteRule ^video/(.*).html$ index.php?act=video_detail&name=$1 [L]
+RewriteRule ^video.html$ index.php?act=video [L]
+
+RewriteRule ^(.*).rss$ module/rss.php?feed=$1 [L]
+
+#demo htacess
+ 
+RewriteRule ^page-nha-dat/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/$ index.php?act=linhtinh&field1=$1&field2=$2&field3=$3&field4=$4&field5=$5&field6=$6&field7=$7&field8=$8&tukhoa=$9&pageNum=$10 [L]
+RewriteRule ^page-nha-dat/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/$ index.php?act=linhtinh&field1=$1&field2=$2&field3=$3&field4=$4&field5=$5&field6=$6&field7=$7&tukhoa=$8&pageNum=$9 [L]
+RewriteRule ^page-nha-dat/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/$ index.php?act=linhtinh&field1=$1&field2=$2&field3=$3&field4=$4&field5=$5&field6=$6&tukhoa=$7&pageNum=$8 [L]
+RewriteRule ^page-nha-dat/(.*)/(.*)/(.*)/(.*)/(.*)(.*)/(.*)/$ index.php?act=linhtinh&field1=$1&field2=$2&field3=$3&field4=$4&field5=$5&tukhoa=$6&pageNum=$7 [L]
+RewriteRule ^page-nha-dat/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/$ index.php?act=linhtinh&field1=$1&field2=$2&field3=$3&field4=$4&tukhoa=$5&pageNum=$6 [L]
+RewriteRule ^page-nha-dat/(.*)/(.*)/(.*)/(.*)/(.*)/$ index.php?act=linhtinh&field1=$1&field2=$2&field3=$3&tukhoa=$4&pageNum=$5 [L]
+RewriteRule ^page-nha-dat/(.*)/(.*)/(.*)/(.*)/$ index.php?act=linhtinh&field1=$1&field2=$2&tukhoa=$3&pageNum=$4 [L]
+RewriteRule ^page-nha-dat/(.*)/(.*)/(.*)/$ index.php?act=linhtinh&field1=$1&tukhoa=$2&pageNum=$3 [L]
+
+RewriteRule ^(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/$ index.php?act=linhtinh&field1=$1&field2=$2&field3=$3&field4=$4&field5=$5&field6=$6&field7=$7&field8=$8 [L]
+RewriteRule ^(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/$ index.php?act=linhtinh&field1=$1&field2=$2&field3=$3&field4=$4&field5=$5&field6=$6&field7=$7 [L]
+RewriteRule ^(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/$ index.php?act=linhtinh&field1=$1&field2=$2&field3=$3&field4=$4&field5=$5&field6=$6 [L]
+RewriteRule ^(.*)/(.*)/(.*)/(.*)/(.*)/$ index.php?act=linhtinh&field1=$1&field2=$2&field3=$3&field4=$4&field5=$5 [L]
+RewriteRule ^(.*)/(.*)/(.*)/(.*)/$ index.php?act=linhtinh&field1=$1&field2=$2&field3=$3&field4=$4 [L]
+RewriteRule ^(.*)/(.*)/(.*)/$ index.php?act=linhtinh&field1=$1&field2=$2&field3=$3 [L]
+RewriteRule ^(.*)/(.*)/$ index.php?act=linhtinh&field1=$1&field2=$2 [L]
+RewriteRule ^(.*)/$ index.php?act=linhtinh&field1=$1 [L]
+
+
+
+
+#RewriteRule ^tim/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*).html$ index.php?act=search&keyword=$1&idcity=$2&cate=$3&bds=$4&dientich=$5&huong=$6&price=$7 [L]
+#RewriteRule ^page-tim-kiem/(.*)/(.*)/(.*).html$ index.php?act=search&keyword=$1&cate=$2&pageNum=$3 [L]
+RewriteRule ^page-danh-muc/(.*)/(.*)/(.*).html$ index.php?act=product_detail&bds=$1&tukhoa=$2&pageNum=$3 [L]
+
+RewriteRule ^page-tim-3/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*).html$ index.php?act=bds&quan=$1&huyen=$2&phuong=$3&nhucau=$4&bds=$5&tukhoa=$6&pageNum=$7 [L]
+RewriteRule ^page-tim-2/(.*)/(.*)/(.*)/(.*)/(.*)/(.*).html$ index.php?act=nhucau&quan=$1&huyen=$2&phuong=$3&nhucau=$4&tukhoa=$5&pageNum=$6 [L]
+RewriteRule ^page-tim-1/(.*)/(.*)/(.*)/(.*)/(.*).html$ index.php?act=phuong&quan=$1&huyen=$2&phuong=$3&tukhoa=$4&pageNum=$5 [L]
+RewriteRule ^page-tim/(.*)/(.*)/(.*)/(.*).html$ index.php?act=huyen&quan=$1&huyen=$2&tukhoa=$3&pageNum=$4 [L]
+
+
+RewriteRule ^(.*)/(.*)/(.*)/(.*)/(.*).html$ index.php?act=bds&quan=$1&huyen=$2&phuong=$3&nhucau=$4&bds=$5 [L]
+RewriteRule ^(.*)/(.*)/(.*)/(.*).html$ index.php?act=nhucau&quan=$1&huyen=$2&phuong=$3&nhucau=$4 [L]
+RewriteRule ^(.*)/(.*)/(.*).html$ index.php?act=phuong&quan=$1&huyen=$2&phuong=$3 [L]
+RewriteRule ^(.*)/(.*).html$ index.php?act=huyen&quan=$1&huyen=$2 [L]
+ 
+
+RewriteRule ^xu-ly.html$ module/xuly.php [L]
+RewriteRule ^tim-bds.html$ module/xuly_bds.php [L]
+
+RewriteRule ^page-tim-bds/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*).html$ index.php?act=search&keyword=$1&idcity=$2&cate=$3&bds=$4&dientich=$5&huong=$6&price=$7&tukhoa=$8&pageNum=$9 [L]
+
+ 
+
+RewriteRule ^(.*).html$ index.php?act=product_detail&bds=$1 [L]
+
+
+ 
+
+
+
+RewriteRule ^page-chuyen-muc/(.*)/p/(.*)/$ index.php?act=chuyenmuc&chuyenmuc=$1&pageNum=$2 [L]
+RewriteRule ^chuyen-muc/(.*).html$ index.php?act=chuyenmuc&chuyenmuc=$1 [L]
+RewriteRule ^thong-tin-chuyen-muc/(.*).html$ index.php?act=chuyenmuc_detail&tenchuyenmuc=$1 [L]
+
+
+
+
+
