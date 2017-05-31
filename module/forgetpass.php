@@ -112,7 +112,7 @@
         <div class="f_khung_dn2">
         
             <div class="t_khung_dn2">
-                Chào mừng bạn đến với <span style="color: #40B01A;">BINH DUONG MICRO</span>
+                Chào mừng bạn đến với <span style="color: #40B01A;">Đất Đại Việt</span>
             </div><!-- End .t_khung_dn2 -->
             <div class="m_khung_dn2">
             	<form id="form1" name="form1" method="post" action="<?=$linkrootbds;?>quen-mat-khau.html">
