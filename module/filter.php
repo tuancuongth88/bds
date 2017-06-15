@@ -141,5 +141,34 @@
             	</div><!-- End .search_bs --> 
         	</form>
         </div><!-- End .m_bs -->
-        
+
+        <h4 class="t_bs t_bs1 qc_mobile">
+            <span>Quảng cáo bất động sản</span>
+        </h4><!-- End .t_bs -->
+        <div class="m_bs m_bs_mobile_ad">
+            <div class="container1">
+                <div class="main_view">
+                    <div class="window">
+
+                        <div class="image_reel">
+                        <?php $adv=get_records("tbl_ad_bds","status=1","id DESC"," "," ");
+                        $i = 0;
+                        while($row_adv=mysql_fetch_assoc($adv)){?>
+                        
+                            <a href="<?=$row_adv['link']?>"><img src="<?php echo $linkrootbds?><?=$row_adv['image']?>" alt="<?=$row_adv['name']?>"></a>                     
+                        <?php 
+                            $i++;
+                            $page_qc .= '<a href="#" rel="'.$i.'">'.$i.'</a>';
+                        }?>
+                        </div>
+                    </div>
+                    <div class="paging_btrix">
+                        <?php
+                        print $page_qc;
+                        ?>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
     </div><!-- End .bs_1 -->
