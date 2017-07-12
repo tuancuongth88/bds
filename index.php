@@ -13,7 +13,8 @@ error_reporting(0);
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta http-equiv="content-language" content="vi" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="audience" content="general" /><meta name="resource-type" content="document" /><meta name="abstract" content="Thông tin Bất Động Sản Việt Nam" /><meta name="classification" content="Bất động sản Việt Nam" /><meta name="area" content="Bất Động Sản" /><meta name="placename" content="Việt Nam" /><meta name="author" content="Gianggia.com" /><meta name="owner" content="ygiahome.com" /><meta name="distribution" content="Global" /><meta name="revisit-after" content="1 days" /><meta name="robots" content="follow" />
 <meta name="google-site-verification" content="BI1ntifjOKhc5Jn_Ln9Cmfvvn1Ms6c7k7rOTyRxrVjE" />
 <base href="<?=$linkrootbds?>"  />
