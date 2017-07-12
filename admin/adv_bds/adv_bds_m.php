@@ -25,6 +25,7 @@ if (isset($_POST['btnSave'])){
 	$link          = isset($_POST['link']) ? trim($_POST['link']) : '';
 	$sort          = isset($_POST['txtSort']) ? trim($_POST['txtSort']) : 0;
 	$status        = $_POST['chkStatus']!='' ? 1 : 0;
+	$position          = isset($_POST['type']) ? trim($_POST['type']) : '';
 	
 	$catInfo       = getRecord('tbl_ad_bds', 'id='.$parent);
 	if(!$multiLanguage){
@@ -40,9 +41,9 @@ if (isset($_POST['btnSave'])){
 	if ($errMsg==''){
 		if (!empty($_POST['id'])){
 			$oldid = $_POST['id'];
-			 $sql = "update tbl_ad_bds set name='".$name."',link='".$link."', status='".$status."',last_modified=now() where id='".$oldid."'";
+			 $sql = "update tbl_ad_bds set name='".$name."',link='".$link."', status='".$status."',last_modified=now(), type='".$position."', sort='".$sort."' where id='".$oldid."'";
 		}else{
-			 $sql = "insert into tbl_ad_bds (name,   link,   status,  date_added, last_modified  ) values ('".$name."','".$link. "','1',now(),now())";
+			 $sql = "insert into tbl_ad_bds (name,   link,   status,  date_added, last_modified , type, sort ) values ('".$name."','".$link. "','1',now(),now(), '".$position."', '".$sort."')";
 		}
 		if (mysql_query($sql,$conn)){
 			if(empty($_POST['id'])) $oldid = mysql_insert_id();
@@ -99,7 +100,7 @@ if (isset($_POST['btnSave'])){
 			$row=mysql_fetch_array($result);
 			$code          = $row['code'];
 			$name          = $row['name'];
-			$type          = $row['type'];
+			$position          = $row['type'];
 			$parent        = $row['parent'];
 			$subject       = $row['subject'];
 			$detail_short  = $row['detail_short'];
@@ -189,6 +190,16 @@ if (isset($_POST['btnSave'])){
                             Không hiển thị</td>
                         <td valign="middle" width="70%">
                             <input type="checkbox" name="chkStatus" value="on" <? if ($status>0) echo 'checked' ?>>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top" width="30%">
+                            Vị trí</td>
+                        <td valign="middle" width="70%">
+                            <select name="type" class="table_khungnho">
+                            	<option value="1" <? if ($position == 1) echo 'selected' ?>>Bên Phải</option>
+                            	<option value="2" <? if ($position == 2) echo 'selected' ?>>Bên Trái</option>
+                            </select>
                         </td>
                     </tr>
                     <tr>

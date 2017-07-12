@@ -1,4 +1,5 @@
 <?php
+// var_dump($frame);die;
 switch ($frame){
 	
 	//  category shop

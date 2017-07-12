@@ -1,5 +1,4 @@
 <?php  
- 
 if (isset($_POST['btn_dangnhap_in'])==true){
 	$username= $_POST['username'];
 	$password= md5(md5(md5($_POST['password'])));// md5()
@@ -142,23 +141,6 @@ if (isset($_POST['btn_dangnhap_in'])==true){
                         <span class="bl_dt">  <?=$error_password_in?></span>
                         <?php }?> 
                     </li>
-					<?php /*
-                    <li class="mbm2">
-                        <span class="l_k_dn2">
-                            Mã bảo mật <span class="color_btd">*</span>
-                        </span><!-- End .l_k_dn2 -->
-                        <span class="r_k_dn2">
-                            <input id="cap" name="cap" class="box-sizing-fix ipt_dn2" type="text" placeholder="Bạn vui lòng nhập mã bảo mật..!" required="required">
-                            <img class="img_cap" align="absmiddle" alt="" src="<?php echo $linkrootbds?>lib/capcha/dongian.php">
-                        </span><!-- End .r_k_dn2 -->
-                        <?php if($error_cap!="" || $error_login!=""){?> 
-                         <span class="l_k_dn2">
-                         	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                         </span>
-                        <span class="bl_dt">  <?=$error_cap?>  <?=$error_login?></span>
-                        <?php }?> 
-                    </li>
-					*/ ?>
                     <li>
                         <span class="l_k_dn2">
                             &nbsp;

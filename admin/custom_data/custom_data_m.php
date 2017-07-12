@@ -70,7 +70,7 @@ if (isset($_POST['btnSave'])){
 			}
 			 
 		}else{
-			$sql = "insert into tbl_users (name, username, password, mobile, email, adress , cmnd , ghichu , sex , idgroup , active , status,  date_added, last_modified) values ('".$name."','".$username."','".$password."','".$mobile."','".$email."','".$address."','".$cmnd."','".$ghichu."','".$gioitinh."','".$idgroup."','1','1',now(),now())";
+			$sql = "insert into tbl_users (name, username, password, mobile, email, address , cmnd , ghichu , sex , idgroup , active , status,  date_added, last_modified) values ('".$name."','".$username."','".$password."','".$mobile."','".$email."','".$address."','".$cmnd."','".$ghichu."','".$gioitinh."','".$idgroup."','1','1',now(),now())";
 		}
 		echo $sql;
 		if (mysql_query($sql,$conn)){
