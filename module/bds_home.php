@@ -97,6 +97,7 @@
                     <span class="lp_2">
                         <h4>
                             <a href="<?php echo $linkrootbds?><?php echo $row_bds['subject'];?>.html" title="<?php echo $row_bds['name'];?>">
+                            <?php echo $row_bds['name']; ?>
                             </a>
                         </h4>
                         <span class="vt_lp">Vị trí:  <?=get_field('tbl_quanhuyen_category','id',$row_bds['idcity'],'name');?></span>
