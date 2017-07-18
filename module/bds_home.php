@@ -78,7 +78,7 @@
     <div class="m_prod">
         <ul>
         <?php
-            $bds=get_records("tbl_rv_item","status=1 and cate=0 and active = 1","date_up DESC,id DESC","0,14"," ");
+            $bds=get_records("tbl_rv_item","status=1 and cate=0 and active = 1","id DESC,id DESC","0,14"," ");
             while($row_bds=mysql_fetch_assoc($bds)){
         ?>
             
