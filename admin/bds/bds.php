@@ -630,7 +630,7 @@ if(userPermissEdit($row_tbl_users['listEdit'],2,5)==true ||  $_SESSION['kt_login
                                     </td>
     
                                     <td align="left" style=" padding:5px;">
-                                        <font style="font-size:15px; font-weight:bold;"><?=$row['name']?>  </font><br /><a href="http://giathinhcantho.com/<?=$row['subject']?>.html" target="_blank"> Xem tin </a><br />
+                                        <font style="font-size:15px; font-weight:bold;"><?=$row['name']?>  </font><br /><a href="http://www.sangiaodichnhadat.info/<?=$row['subject']?>.html" target="_blank"> Xem tin </a><br />
                                         <p>
                                         Người đăng: <?php if($row['iduser']!=0) echo get_field('tbl_users','id',$row['iduser'],'username');else echo "Admin";?> &nbsp;
                                         <? if(get_field('tbl_users','id',$row['iduser'],'idgroup')==2) echo "( Nhập liệu ) ";?>
