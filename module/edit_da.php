@@ -6,7 +6,7 @@ $tensanpham=$_GET['tensanpham'];
 
 $row_sanpham   = getRecord('tbl_rv_item', "subject='".$tensanpham."'");
 
-if($row_sanpham['iduser']!=$iduser) header("location:".$linkrootbds);
+// if($row_sanpham['iduser']!=$iduser) header("location:".$linkrootbds);
 
 $path = "images/bds_da";
 $pathdb = "images/bds_da";

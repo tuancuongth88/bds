@@ -10,7 +10,7 @@
                 
                 <ul>
 					<?php
-                    $adv=get_records("tbl_ad_bds","status=1 AND type=1","sort DESC"," "," ");
+                    $adv=get_records("tbl_ad_bds","status=1 AND type=1","sort DESC"," 0,10000"," ");
                     while($row_adv=mysql_fetch_assoc($adv)){
                     ?>
                     <li>

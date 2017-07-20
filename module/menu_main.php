@@ -13,7 +13,7 @@
             </li>
  
 			<?php
-            $cate=get_records("tbl_rv_category"," parent=2 and cate=0","sort ASC"," "," ");
+            $cate=get_records("tbl_rv_category"," parent=2 and cate=0 and status = 1","sort ASC"," "," ");
             while($row_cate=mysql_fetch_assoc($cate)){
             ?>
             <li <?php if(((get_field('tbl_rv_category','subject',$_GET['bds'],'cate')==0 && ( get_field('tbl_rv_category','subject',$_GET['bds'],'id')==$row_cate['id'] ||  get_field('tbl_rv_category','subject',$_GET['bds'],'parent')==$row_cate['id'])&& get_field('tbl_rv_item','subject',$_GET['bds'],'id')=="" ) ||  (get_field('tbl_rv_item','subject',$_GET['bds'],'cate')==0 && get_field('tbl_rv_category','id',get_field('tbl_rv_item','subject',$_GET['bds'],'parent'),'parent')==$row_cate['id'] ) ) && ($frame!="tinnhadat" && $frame!="duan" && $frame!="doanhnghiep" && $frame!="video"  && $frame!="video_detail"  && $frame!="home" && $frame!="")) {?>class="active" <?php }?>>
@@ -26,7 +26,7 @@
                 </a>
                 <ul class="menu_child">
                 	<?php
-					$cate1=get_records("tbl_rv_category"," cate=0 and parent='".$row_cate['id']."'","sort ASC"," "," ");
+					$cate1=get_records("tbl_rv_category"," cate=0 and status = 1 and parent='".$row_cate['id']."'","sort ASC"," "," ");
 					while($row_cate1=mysql_fetch_assoc($cate1)){
 					?>
                     <li><a href="<?php echo $linkrootbds?><?=$row_cate1['subject']?>.html"> <?=$row_cate1['name'];?></a> </li> 
@@ -47,7 +47,7 @@
                 <ul class="menu_child">
                 
                     <?php
-					$cate=get_records("tbl_rv_category"," parent=2 and cate=1","sort ASC"," "," ");
+					$cate=get_records("tbl_rv_category"," parent=2 and cate=1 and status = 1","sort ASC"," "," ");
 					while($row_cate=mysql_fetch_assoc($cate)){
 					?>
                     <li><a href="<?php echo $linkrootbds?><?=$row_cate['subject']?>.html"> <?=$row_cate['name'];?></a> </li> 
@@ -67,7 +67,7 @@
                 </a>
                 <ul class="menu_child">
                 	<?php
-					$cate=get_records("tbl_rv_category"," parent=2 and cate=2","sort ASC"," "," ");
+					$cate=get_records("tbl_rv_category"," parent=2 and cate=2 and status = 1","sort ASC"," "," ");
 					while($row_cate=mysql_fetch_assoc($cate)){
 					?>
                     <li><a href="<?php echo $linkrootbds?><?=$row_cate['subject']?>.html"> <?=$row_cate['name'];?></a> </li> 
